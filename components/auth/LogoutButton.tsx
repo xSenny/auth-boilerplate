@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { Button } from "../ui/button";
-import { signOut } from "@/actions/auth.action";
+import { signOut } from "@/lib/actions/auth.action";
 import { IoIosLogOut } from "react-icons/io";
 const LogoutButton = () => {
   return (

@@ -5,13 +5,13 @@ import {
   ResetSchema,
   SignInSchema,
   SignUpSchema,
-} from "@/schemas";
+} from "@/lib/schemas";
 import { z } from "zod";
 import bcrypt from "bcryptjs";
 
 import { lucia, auth } from "@/lib/auth";
 import { cookies } from "next/headers";
-import { User } from "@/lib/models/user.model";
+import { User } from "@/lib/database/models/user.model";
 import {
   generatePasswordResetToken,
   generateVerificationToken,
@@ -21,8 +21,8 @@ import { getUserByEmail } from "@/utils/data/user";
 import { generateCodeVerifier, generateState } from "arctic";
 import { github, google } from "@/lib/oauth";
 import { getPasswordResetTokenByToken } from "@/utils/data/password-reset-token";
-import db from "@/lib/db";
-import { PasswordResetToken } from "@/lib/models/password-reset-token.model";
+import db from "@/lib/database";
+import { PasswordResetToken } from "@/lib/database/models/password-reset-token.model";
 
 export const signUp = async (values: z.infer<typeof SignUpSchema>) => {
   const validateData = SignUpSchema.safeParse(values);
@@ -70,12 +70,12 @@ export const signIn = async (values: z.infer<typeof SignInSchema>) => {
 
   if (!existingUser.emailVerified) {
     const verificationToken = await generateVerificationToken(
-      existingUser.email
+      existingUser.email,
     );
 
     await sendVerificationEmail(
       verificationToken.email,
-      verificationToken.token
+      verificationToken.token,
     );
 
     return { success: "Confirmation email sent!" };
@@ -83,7 +83,7 @@ export const signIn = async (values: z.infer<typeof SignInSchema>) => {
 
   const isPasswordValid = await bcrypt.compare(
     validateData.data.password,
-    existingUser.password
+    existingUser.password,
   );
 
   if (!isPasswordValid) {
@@ -96,7 +96,7 @@ export const signIn = async (values: z.infer<typeof SignInSchema>) => {
   cookies().set(
     sessionCookie.name,
     sessionCookie.value,
-    sessionCookie.attributes
+    sessionCookie.attributes,
   );
 
   return {
@@ -117,7 +117,7 @@ export const signOut = async () => {
     cookies().set(
       sessionCookie.name,
       sessionCookie.value,
-      sessionCookie.attributes
+      sessionCookie.attributes,
     );
   } catch (error: any) {
     return { error: error?.message };
@@ -142,7 +142,7 @@ export const createGoogleAuthorizationURL = async () => {
       codeVerifier,
       {
         scopes: ["email", "profile"],
-      }
+      },
     );
 
     return {
@@ -194,7 +194,7 @@ export const resetPassword = async (values: z.infer<typeof ResetSchema>) => {
   // 2. Send the password reset email
   await sendPasswordResetmail(
     passwordResetToken.email,
-    passwordResetToken.token
+    passwordResetToken.token,
   );
 
   return { success: "Reset email sent! Check your inbox!" };
@@ -202,7 +202,7 @@ export const resetPassword = async (values: z.infer<typeof ResetSchema>) => {
 
 export const newPassword = async (
   values: z.infer<typeof NewPasswordSchema>,
-  token: string | null
+  token: string | null,
 ) => {
   //   No token --> return error
   if (!token) {
@@ -247,7 +247,7 @@ export const newPassword = async (
   cookies().set(
     sessionCookie.name,
     sessionCookie.value,
-    sessionCookie.attributes
+    sessionCookie.attributes,
   );
 
   return { success: "Password updated" };

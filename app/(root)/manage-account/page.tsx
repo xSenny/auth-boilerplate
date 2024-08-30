@@ -1,5 +1,5 @@
 import { auth } from "@/lib/auth";
-import { User } from "@/lib/models/user.model";
+import { User } from "@/lib/database/models/user.model";
 import { redirect } from "next/navigation";
 import React from "react";
 

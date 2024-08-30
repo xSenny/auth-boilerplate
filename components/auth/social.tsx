@@ -7,7 +7,7 @@ import { useSearchParams } from "next/navigation";
 import {
   createGithubAuthorizationURL,
   createGoogleAuthorizationURL,
-} from "@/actions/auth.action";
+} from "@/lib/actions/auth.action";
 import { toast } from "../ui/use-toast";
 
 export const Social = () => {

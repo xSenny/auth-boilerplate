@@ -5,7 +5,7 @@ import CardWrapper from "./card-wrapper";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { NewPasswordSchema } from "@/schemas";
+import { NewPasswordSchema } from "@/lib/schemas";
 import {
   Form,
   FormControl,
@@ -20,7 +20,7 @@ import { Button } from "../ui/button";
 import { useRouter, useSearchParams } from "next/navigation";
 import { FromError } from "./form-error";
 import { FormSuccess } from "./form-success";
-import { newPassword } from "@/actions/auth.action";
+import { newPassword } from "@/lib/actions/auth.action";
 
 export const NewPasswordForm = () => {
   const searchParams = useSearchParams();

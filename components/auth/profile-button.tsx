@@ -1,5 +1,5 @@
 import { auth } from "@/lib/auth";
-import { User } from "@/lib/models/user.model";
+import { User } from "@/lib/database/models/user.model";
 import Link from "next/link";
 import { GoPersonFill } from "react-icons/go";
 import { IoMdSettings } from "react-icons/io";

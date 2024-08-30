@@ -1,5 +1,5 @@
-import db from "@/lib/db";
-import { PasswordResetToken } from "@/lib/models/password-reset-token.model";
+import db from "@/lib/database";
+import { PasswordResetToken } from "@/lib/database/models/password-reset-token.model";
 
 export const getPasswordResetTokenByToken = async (token: string) => {
   try {

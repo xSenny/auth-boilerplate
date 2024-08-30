@@ -1,5 +1,5 @@
-import db from "@/lib/db";
-import { User } from "@/lib/models/user.model";
+import db from "@/lib/database";
+import { User } from "@/lib/database/models/user.model";
 
 export const getUserByEmail = async (email: string) => {
   try {

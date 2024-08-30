@@ -8,7 +8,7 @@ import {
   FormLabel,
   FormMessage,
 } from "../ui/form";
-import { SignInSchema } from "@/schemas";
+import { SignInSchema } from "@/lib/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -17,7 +17,7 @@ import { Input } from "../ui/input";
 
 import CardWrapper from "./card-wrapper";
 import Link from "next/link";
-import { signIn } from "@/actions/auth.action";
+import { signIn } from "@/lib/actions/auth.action";
 import { FromError } from "./form-error";
 import { FormSuccess } from "./form-success";
 

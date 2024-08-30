@@ -5,7 +5,7 @@ import CardWrapper from "./card-wrapper";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ResetSchema } from "@/schemas";
+import { ResetSchema } from "@/lib/schemas";
 import {
   Form,
   FormControl,
@@ -19,7 +19,7 @@ import { Button } from "../ui/button";
 
 import { FromError } from "./form-error";
 import { FormSuccess } from "./form-success";
-import { resetPassword } from "@/actions/auth.action";
+import { resetPassword } from "@/lib/actions/auth.action";
 import { useRouter } from "next/navigation";
 
 export const ResetForm = () => {

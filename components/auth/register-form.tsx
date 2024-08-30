@@ -5,7 +5,7 @@ import CardWrapper from "./card-wrapper";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { SignUpSchema } from "@/schemas";
+import { SignUpSchema } from "@/lib/schemas";
 import {
   Form,
   FormControl,
@@ -17,7 +17,7 @@ import {
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
-import { signUp } from "@/actions/auth.action";
+import { signUp } from "@/lib/actions/auth.action";
 import { FromError } from "./form-error";
 import { FormSuccess } from "./form-success";
 import {

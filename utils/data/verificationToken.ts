@@ -1,5 +1,5 @@
-import db from "@/lib/db";
-import { EmailVerification } from "@/lib/models/email-verification.model";
+import db from "@/lib/database";
+import { EmailVerification } from "@/lib/database/models/email-verification.model";
 
 export const getVerificationTokenByEmail = async (email: string) => {
   try {

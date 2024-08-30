@@ -1,6 +1,6 @@
 import { MongodbAdapter } from "@lucia-auth/adapter-mongodb";
 import mongoose from "mongoose";
-import connectDB from "./db";
+import connectDB from "./database";
 connectDB();
 
 export const adapter = new MongodbAdapter(

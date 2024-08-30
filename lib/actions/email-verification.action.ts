@@ -1,11 +1,11 @@
 "use server";
 import { lucia } from "@/lib/auth";
-import db from "@/lib/db";
-import { EmailVerification } from "@/lib/models/email-verification.model";
-import { User } from "@/lib/models/user.model";
-import { getUserByEmail } from "@/utils/data/user";
+import db from "@/lib/database";
+import { EmailVerification } from "@/lib/database/models/email-verification.model";
+import { User } from "@/lib/database/models/user.model";
 import { getVerificationTokenByToken } from "@/utils/data/verificationToken";
 import { cookies } from "next/headers";
+import { getUserByEmail } from '@/utils/data/user';
 
 export const newVerification = async (token: string) => {
   //   get the verification token by the token from db
@@ -42,7 +42,7 @@ export const newVerification = async (token: string) => {
   cookies().set(
     sessionCookie.name,
     sessionCookie.value,
-    sessionCookie.attributes
+    sessionCookie.attributes,
   );
 
   return { success: "Email verified!" };

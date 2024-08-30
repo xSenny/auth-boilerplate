@@ -7,7 +7,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 import { FromError } from "./form-error";
 import { FormSuccess } from "./form-success";
-import { newVerification } from "@/actions/email-verification.action";
+import { newVerification } from "@/lib/actions/email-verification.action";
 
 const NewVerificationForm = () => {
   const [error, setError] = useState<string | undefined>();
